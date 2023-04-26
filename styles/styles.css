@@ -3,6 +3,8 @@
     --secondary-gray: #3A3F47;
     --light-gray: #67686D;
     --text-stroke:  #0296E5;
+    --border-content:  #0296e589;
+    
 }
 *{
     padding: 0;
@@ -14,20 +16,28 @@ html{
     font-size: 62.5%;
 }
 body{
-    padding: 80px 0;
+    padding-bottom: 80px;
     background: var(--background-gray);
 }
 header{
-    background-color: var(--background-gray);
+
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80px;
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     z-index: 1;
-    border-bottom: 0.01px solid black;
+    /* border-bottom: 0.5px solid var(--border-content); */
+}
+header i.fa-solid{
+    font-size: 20px;
+    color: white;
+}
+header h1{
+    font-size: 2.5rem;
+    color: #fff;
 }
 main{
     width: 100%;
@@ -142,6 +152,7 @@ main{
     color: var(--background-gray);
     -webkit-text-stroke: 1px var(--text-stroke);
     font-weight: bold;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 .movie-trends-container .movie img{
     width: 100%;
@@ -151,11 +162,9 @@ main{
     border-radius: 16px;
 }
 .categories-container{
-    width: 100%;
+    width: 300px;
     overflow-x: scroll;
     white-space: nowrap;
-    padding-left: 30px;
-    padding-right: 5px;
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
     margin-top: 10px;
@@ -201,7 +210,7 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    border-top: 0.5px solid var(--text-stroke);
+    border-top: 0.5px solid var(--border-content);
 }
 footer div button{
     width: 70px;
