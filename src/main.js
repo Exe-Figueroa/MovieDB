@@ -1,13 +1,21 @@
 const API_KEY = "604eb6d13047e1a88a7aceb31755b398";
+const api = axios.create({
+    baseURL: 'https://api.themoviedb.org/3/',
+    headers:{
+        'Content-Type': 'application/json; charset=utf-8'
+    },
+    params: {
+        'api_key': API_KEY,
+    }
+});
+//Se crea la función que llama a las películas en tendencia
 
-        /**
-         * ?Acá se llaman a las películas que están en tendencia en la api */ 
 async function getTrendingMoviesPreview(){
     let topicCounter = 0;
-    const response = await fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`);
-    const data = await response.json();
+    const {data} = await api(`trending/movie/day`);
+console.log(data);
     const movieTop = data.results;
-    
+
     const movieTopList = [];
     movieTop.map(peli =>{
         topicCounter++;
@@ -21,27 +29,22 @@ async function getTrendingMoviesPreview(){
     const movieTrendContainer = document.querySelector('.movie-trends-container');
     return movieTrendContainer.innerHTML = movieTopList.slice(0,20).join('');
 }
-        /**
-         * ?Acá se llaman a las categorías de las pelis 
-         * */ 
+
+//Se crea la función que llama a los nombres de las categorías
 async function getCategoriesPreviewList(){
-    const response = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
-    const data = await response.json();
+    const {data} = await api(`genre/movie/list`);
+
     const categories = data.genres;
 
     categoryClass = [];
     categories.map(category =>{
         categoryClass.push(`
-    <span class="category">${category.name}</span>
+    <span id="${category.id}" class="category">${category.name}</span>
     `)})
 
     const categoryContainer = document.querySelector('.categories-container');
     return categoryContainer.innerHTML = categoryClass.join('');
 }
-getCategoriesPreviewList();
-
-getTrendingMoviesPreview();
-
 
 
 
