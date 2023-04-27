@@ -1,5 +1,5 @@
-window.addEventListener('load', navigator, false);
-window.addEventListener('onhashchange', navigator, false);
+window.addEventListener('DOMContentLoaded', navigator, false);
+window.addEventListener('hashchange', navigator, false);
 
 function navigator() {
     console.log("El hash de la URL es: " + location.hash);
