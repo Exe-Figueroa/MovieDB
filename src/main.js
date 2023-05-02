@@ -33,15 +33,12 @@ console.log(data);
 //Se crea la función que llama a los nombres de las categorías
 async function getCategoriesPreviewList(){
     const {data} = await api(`genre/movie/list`);
-
     const categories = data.genres;
-
     categoryClass = [];
     categories.map(category =>{
         categoryClass.push(`
     <span id="${category.id}" class="category">${category.name}</span>
     `)})
-
     const categoryContainer = document.querySelector('.categories-container');
     return categoryContainer.innerHTML = categoryClass.join('');
 }
