@@ -194,7 +194,7 @@ main{
     scroll-snap-type: x proximity;
     margin-top: 10px;
 }
-.category{
+.categories-container .category{
     font-size: 1.5rem;
     color: #fff;
     scroll-snap-align: center;
@@ -202,6 +202,7 @@ main{
     margin-bottom: 10px;
     margin-right: 10px;
     font-weight: bold;
+    cursor: pointer;
 }
 .categories-container::-webkit-scrollbar {
     height: 1px;
