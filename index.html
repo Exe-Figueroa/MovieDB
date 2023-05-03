@@ -10,41 +10,66 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./img/video-camera.png" type="image/x-icon">
 </head>
 <body>
-    <header>
-        <i class="fa-solid fa-camera-movie"></i>
-        <h1>FlixerDB</h1>
-    </header>
+    <div class="header-container">
+        <header>
+            <img src="./img/video-camera.png" alt="" class="img-header ">
+            <h1 class="title-header">FlixerDB</h1>
+            <div class="search-container" >
+                <i class="fa-solid fa-angle-left"></i>
+                <h2>
+                    Search
+                </h2>
+            </div>
+        </header>
+    </div>
     <main>
-        <form action="" id="form">
-            <input type="text" placeholder="Search">
-            <button class="searchBtn">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </form>
-        <div class="trends-Title-Container">
-            <h2>Top20</h2>
-            <button class="btn-seeMore">More <i class="fa-solid fa-angles-right"></i></button>
+        <div class="form-container">
+            <form action="" id="form">
+                <input type="text" placeholder="Search">
+                <button class="searchBtn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
         </div>
-        <div class="movie-trends-container">
-            
-
+        <div class="preview-trends-container">
+            <div class="trends-Title-Container ">
+                <h2>Top20</h2>
+                <button class="btn-seeMore">More <i class="fa-solid fa-angles-right"></i></button>
+            </div>
+            <div class="movie-trends-container">
+            </div>
         </div>
-        <div class="categories-container">
+        <div class="categories-container ">
             <!-- <span class="category">Category1</span> -->
 
         </div>
-        <div class="movie-category-container">
-            <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
-            <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
-            <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
-            <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
-            <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
-            <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
-            <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
-            <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
-            <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+        <div class="category-list-container">
+            <div class="movie-category-container">
+                <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+                <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+                <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+                <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+                <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+                <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+                <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+                <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+                <img src="https://ramenparados.com/wp-content/uploads/2022/01/Jujutsu-Kaisen-0-poster-724x1024.jpg" alt="" class="img-movie-category">
+            </div>
+        </div>
+        <div class="movie-detail-container">
+            <section class="background-image"></section>
+            <section class="description-movie-container">
+                <h2>nombre de la peli</h2>
+                <span>1.45</span>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit, enim ipsa eum fugiat alias velit dolores possimus culpa repellat quas voluptatum aperiam, unde, eos quaerat quod commodi minima eaque natus!</p>
+                <article>
+                    <h2>parecidas</h2>
+                    <div>aca van las pelis</div>
+                </article>
+            </section>
         </div>
     </main>
     <footer>

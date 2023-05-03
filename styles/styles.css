@@ -19,8 +19,10 @@ body{
     padding-bottom: 80px;
     background: var(--background-gray);
 }
+.inactive{
+    display: none;
+}
 header{
-
     width: 100%;
     display: flex;
     justify-content: center;
@@ -31,14 +33,35 @@ header{
     z-index: 1;
     /* border-bottom: 0.5px solid var(--border-content); */
 }
-header i.fa-solid{
-    font-size: 20px;
-    color: white;
+header .img-header{
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    object-position: center;
+    margin-right: 10px;
 }
 header h1{
     font-size: 2.5rem;
     color: #fff;
 }
+header .search-container{
+    width: 300px;
+    position: relative;
+}
+header .search-container i{
+    font-size: 25px;
+    color: var(--light-gray);
+    position: absolute;
+    left: 0;
+}
+header .search-container h2{
+    color: #fff;
+    font-size: 2.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 main{
     width: 100%;
     display: flex;
@@ -89,7 +112,7 @@ main{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    margin: 10px auto;
     /* background: gray; */
 }
 .trends-Title-Container h2{
@@ -113,7 +136,9 @@ main{
     margin-left: 5px;
 }
 .movie-trends-container {
-    width: 100%;
+    min-width: 300px;
+    max-width: 350px;
+
     overflow-x: scroll;
     white-space: nowrap;
     padding-left: 30px;
@@ -250,3 +275,5 @@ footer div button .fa-solid.search{
     color: var(--light-gray);
     margin-bottom: 5px;
 }
+
+

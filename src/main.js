@@ -13,9 +13,8 @@ const api = axios.create({
 async function getTrendingMoviesPreview(){
     let topicCounter = 0;
     const {data} = await api(`trending/movie/day`);
-console.log(data);
     const movieTop = data.results;
-
+    console.log(movieTop);
     const movieTopList = [];
     movieTop.map(peli =>{
         topicCounter++;
