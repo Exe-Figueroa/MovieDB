@@ -11,7 +11,7 @@ const trendsPreview = document.querySelector('.preview-trends-container');
 //Categories
 const categoriesList = document.querySelector('.categories-container');
 const movieCategory= document.querySelector('.category-list-container');
-
+const moviesCategoryContainer = document.querySelector('.movie-category-container')
 //Movie Details
 
 const movieDetails = document.querySelector('.movie-detail-container');

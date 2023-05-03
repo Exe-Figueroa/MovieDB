@@ -30,24 +30,43 @@ async function getTrendingMoviesPreview(){
 }
 
 //Se crea la función que llama a los nombres de las categorías
+
 async function getCategoriesPreviewList(){
     const {data} = await api(`genre/movie/list`);
     const categories = data.genres;
-    categoryClass = [];
+    const categoryClass = [];
     categories.map(category =>{
-        categoryClass.push(`
-    <span id="${category.id}" class="category">${category.name}</span>
-    `)})
+        const categoryElement = document.createElement('span');
+        categoryElement.id = category.id;
+        categoryElement.className = 'category';
+        categoryElement.innerText = category.name;
+        categoryClass.push(categoryElement.outerHTML);
+    })
     const categoryContainer = document.querySelector('.categories-container');
-    return categoryContainer.innerHTML = categoryClass.join('');
+    categoryContainer.innerHTML = categoryClass.join('');
+    // Agregamos un EventListener al objeto categoryContainer para capturar los eventos click en los elementos span con la clase category
+    categoryContainer.addEventListener('click', function(event) {
+        const clickedCategory = event.target;
+        if (clickedCategory.classList.contains('category')) {
+            location.hash = `#category=${clickedCategory.id}-${clickedCategory.innerText}`
+            console.log(location.hash);
+        }
+    });
 }
-
-
-
-// const URL='http://52.15.53.173:5000/api/v1/files'
-// async function consumir(){
-//     const response = await fetch(URL);
-//     const data = await response.json();
-//     console.log(data);
-// }
-// consumir();
+async function getMoviesByCategory(id){
+    const {data} = await api(`discover/movie`, {
+        params: {
+            with_genres: id,
+        }
+    });
+    const movie = data.results;
+    const movieList = [];
+    movie.map(peli =>{
+        movieList.push(`
+            
+            <img src="https://image.tmdb.org/t/p/w300${peli.poster_path}" alt="${peli.title}" class="img-movie-category"> 
+        `);
+    });
+    
+    return moviesCategoryContainer.innerHTML = movieList.join('');
+}
