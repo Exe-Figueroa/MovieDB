@@ -15,3 +15,8 @@ const movieCategory= document.querySelector('.category-list-container');
 //Movie Details
 
 const movieDetails = document.querySelector('.movie-detail-container');
+
+//buttons 
+const btnBack = document.querySelector('#back');
+const btnSearch = document.querySelector('#search');
+const btnTrends = document.querySelector('#btnTrends');
