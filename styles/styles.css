@@ -229,7 +229,7 @@ main{
 }
 footer{
     width: 100%;
-    height: 80px;
+    height: 50px;
     position: fixed;
     bottom: 0;
     background-color: var(--background-gray);
@@ -239,8 +239,8 @@ footer{
     border-top: 0.5px solid var(--border-content);
 }
 footer div button{
-    width: 70px;
-    height: 70px;
+    width: 40px;
+    height: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -258,7 +258,7 @@ footer .footer-btn-container{
 footer div button .i{
     -webkit-text-stroke: 2px var(--light-gray);
     color: #0000;
-    font-size: 25px;
+    font-size: 20px;
     margin-bottom: 5px;
 }
 /* footer div button .fa-solid{
@@ -267,12 +267,12 @@ footer div button .i{
     margin-bottom: 5px;
 } */
 footer div button .fa-regular{
-    font-size: 25px;
+    font-size: 20px;
     color: var(--light-gray);
     margin-bottom: 5px;
 }
 footer div button .fa-solid.search{
-    font-size: 25px;
+    font-size: 20px;
     color: var(--light-gray);
     margin-bottom: 5px;
 }
