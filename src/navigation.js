@@ -1,18 +1,16 @@
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
-btnBack.addEventListener('click', ()=>{
-    location.hash = '#home'
+btnBack.addEventListener('click', () => {
+    location.hash = window.history.back();
 });
 btnSearch.addEventListener('click', ()=>{
-    location.hash = '#search='
+    location.hash = `#search=${inputSearch.value}`
 });
 btnTrends.addEventListener('click', ()=>{
     location.hash = '#trends'
 })
 
 function navigator() {
-
-    
     if (location.hash.startsWith('#trends')) {
         trendsPage();
     } else if (location.hash.startsWith('#search=')) {
@@ -24,7 +22,6 @@ function navigator() {
     } else {
         homePage();
     }
-    
 }
 
 function homePage(){
@@ -45,16 +42,17 @@ function trendsPage(){
     console.log("trends");
     // titleHeader.classList.add("inactive");
     titleHeader.classList.add("inactive");
-    form.classList.remove("inactive");
+    form.classList.add("inactive");
     imgHeader.classList.add("inactive");
     searchHeader.classList.remove("inactive");
     trendsPreview.classList.add("inactive");
     categoriesList.classList.add("inactive");
     movieCategory.classList.remove("inactive");
     movieDetails.classList.add("inactive");
-
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    h2Title.innerHTML = 'Trends';
+    getTrendingMoviesPreview();
 }
 function searchPage(){
     console.log("search");
@@ -66,7 +64,8 @@ function searchPage(){
     categoriesList.classList.add("inactive");
     movieCategory.classList.remove("inactive");
     movieDetails.classList.add("inactive");
-
+    const [_, query] = location.hash.split('=');
+    getMoviesBySearch(query); 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
@@ -81,12 +80,10 @@ function movieDetailsPage(){
     categoriesList.classList.add("inactive");
     movieCategory.classList.add("inactive");
     movieDetails.classList.remove("inactive");
-
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }
 function categoriesPage(){
-
     titleHeader.classList.remove("inactive");
     imgHeader.classList.remove("inactive");
     searchHeader.classList.add("inactive");

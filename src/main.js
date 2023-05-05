@@ -8,28 +8,28 @@ const api = axios.create({
         'api_key': API_KEY,
     }
 });
-
-
 //Se crea la función que llama a las películas de manera automática
-const createMovies = (movies, container)=>{
-        let topicCounter = 0;
+const createMovies = (movies, container, topicCounter)=>{
         //A modificar
-        const movieTopList = [];
-        movies.map(peli =>{
-            topicCounter++;
-            movieTopList.push(`
-                <section class="movie">
-                    <img src=https://image.tmdb.org/t/p/w300${peli.poster_path} alt="${peli.title}" class="movie-img">
-                    <span class="movie-number">${topicCounter}</span>
-                </section>
-            `);
-            // const movieElement = document.createElement('span');
-            // movieElement.id = item.id;
-            // movieElement.className = 'category';
-            // movieElement.innerText = item.name;
-            // movieTopList.push(movieElement.outerHTML);
-        });
-        return container.innerHTML = movieTopList.slice(0,20).join('');
+        const movieList = [];
+        if (topicCounter != null){
+            movies.map(peli =>{
+                topicCounter++;
+                movieList.push(`
+                    <section class="movie">
+                        <img src=https://image.tmdb.org/t/p/w300${peli.poster_path} alt="${peli.title}" class="movie-img">
+                        <span class="movie-number">${topicCounter}</span>
+                    </section>
+                `);
+            });
+        }else{
+            movies.map(peli =>{
+                movieList.push(`
+                        <img src=https://image.tmdb.org/t/p/w300${peli.poster_path} alt="${peli.title}" class="img-movie-category">
+                `);
+            });
+        }
+        return container.innerHTML = movieList.join('');
 }
 //Se crea una función para poder llamar a categorías de manera automática y así no repetir código
 
@@ -51,21 +51,31 @@ const createCategories = (category, container)=>{
         }
     });
 }
+//Se traen las pelis de trending
 async function getTrendingMoviesPreview(){
-    
     const {data} = await api(`trending/movie/day`);
     const movieTop = data.results;
-
-    createMovies(movieTop ,movieTrendContainer)
+    let topicCounter = 0;
+    createMovies(movieTop ,movieTrendContainer, topicCounter)
 }
 
 //Se crea la función que llama a los nombres de las categorías
-
 async function getCategoriesPreviewList(){
     const {data} = await api(`genre/movie/list`);
     const categories = data.genres;
     createCategories(categories, categoriesList);
 }
+//Se traen las pelis por el query del search
+async function getMoviesBySearch(query){
+    const {data} = await api(`search/movie`, {
+        params: {
+            query, 
+        }
+    });
+    const movie = data.results;
+    createMovies(movie, moviesCategoryContainer, null) //Arreglar esto
+}
+//Se traen Pelis por id. Eso funciona con las categorias del getCategoryPreviewList
 async function getMoviesByCategory(id){
     const {data} = await api(`discover/movie`, {
         params: {
@@ -73,13 +83,5 @@ async function getMoviesByCategory(id){
         }
     });
     const movie = data.results;
-    const movieList = [];
-    movie.map(peli =>{
-        movieList.push(`
-            
-            <img src="https://image.tmdb.org/t/p/w300${peli.poster_path}" alt="${peli.title}" class="img-movie-category"> 
-        `);
-    });
-    
-    return moviesCategoryContainer.innerHTML = movieList.join('');
+    createMovies(movie ,moviesCategoryContainer, null)
 }

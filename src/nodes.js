@@ -4,6 +4,7 @@ const inputSearch = document.querySelector('#search-input');
 const titleHeader = document.querySelector('.title-header');
 const imgHeader = document.querySelector('.img-header');
 const searchHeader = document.querySelector('.search-container');
+const h2Title = document.querySelector('.h2-title');
 //Nodos del main
 const form = document.querySelector('.form-container');
 //TOP20
