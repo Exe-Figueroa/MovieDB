@@ -11,24 +11,40 @@ const api = axios.create({
 //Se crea la función que llama a las películas de manera automática
 const createMovies = (movies, container, topicCounter)=>{
         //A modificar
+
         const movieList = [];
         if (topicCounter != null){
             movies.map(peli =>{
+
                 topicCounter++;
-                movieList.push(`
-                    <section class="movie">
-                        <img src=https://image.tmdb.org/t/p/w300${peli.poster_path} alt="${peli.title}" class="movie-img">
-                        <span class="movie-number">${topicCounter}</span>
-                    </section>
-                `);
-            });
+                const movieElement = document.createElement('section');
+                movieElement.className='movie';
+                const movieImg = document.createElement('img');
+                movieImg.id = peli.id;
+                movieImg.className = 'movie-img';
+                movieImg.src = `https://image.tmdb.org/t/p/w300${peli.poster_path}`
+                const number = document.createElement('span');
+                number.className = 'movie-number';
+                number.innerText = topicCounter
+                movieElement.append(movieImg, number);
+                movieList.push(movieElement.outerHTML);
+            })
         }else{
             movies.map(peli =>{
-                movieList.push(`
-                        <img src=https://image.tmdb.org/t/p/w300${peli.poster_path} alt="${peli.title}" class="img-movie-category">
-                `);
+                const movieImg = document.createElement('img');
+                movieImg.id = peli.id;
+                movieImg.className = 'movie-img';
+                movieImg.src = `https://image.tmdb.org/t/p/w300${peli.poster_path}`
+                movieList.push(movieImg.outerHTML);
             });
         }
+            container.innerHTML = movieList.join('');
+            container.addEventListener('click', (event)=>{
+                const clickedMovie = event.target;
+                if (clickedMovie.classList.contains('movie-img')){
+                    console.log(clickedMovie.id)
+                }
+            })
         return container.innerHTML = movieList.join('');
 }
 //Se crea una función para poder llamar a categorías de manera automática y así no repetir código
