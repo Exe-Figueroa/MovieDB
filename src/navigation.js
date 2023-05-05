@@ -70,7 +70,6 @@ function searchPage(){
     document.documentElement.scrollTop = 0;
 }
 function movieDetailsPage(){
-    console.log("movie");
     // header.classList.add("inactive");
     titleHeader.classList.add("inactive");
     form.classList.add("inactive");
@@ -82,6 +81,10 @@ function movieDetailsPage(){
     movieDetails.classList.remove("inactive");
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+
+    const [_, id] = location.hash.split('=')
+    
+    getMovieById(id);
 }
 function categoriesPage(){
     titleHeader.classList.remove("inactive");

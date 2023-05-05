@@ -11,11 +11,10 @@ const api = axios.create({
 //Se crea la función que llama a las películas de manera automática
 const createMovies = (movies, container, topicCounter)=>{
         //A modificar
-
+        console.log(movies);
         const movieList = [];
         if (topicCounter != null){
             movies.map(peli =>{
-
                 topicCounter++;
                 const movieElement = document.createElement('section');
                 movieElement.className='movie';
@@ -42,7 +41,7 @@ const createMovies = (movies, container, topicCounter)=>{
             container.addEventListener('click', (event)=>{
                 const clickedMovie = event.target;
                 if (clickedMovie.classList.contains('movie-img')){
-                    console.log(clickedMovie.id)
+                    location.hash = `#movie=${clickedMovie.id}`
                 }
             })
         return container.innerHTML = movieList.join('');
@@ -99,5 +98,10 @@ async function getMoviesByCategory(id){
         }
     });
     const movie = data.results;
+    createMovies(movie ,moviesCategoryContainer, null)
+}
+async function getMovieById(id){
+    const {data: movie} = await api(`discover/${id}`);
+
     createMovies(movie ,moviesCategoryContainer, null)
 }
