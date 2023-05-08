@@ -247,11 +247,6 @@ main{
     border-radius: 16px;
     position: relative;
 }
-.header-movie-detail-content{
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
 .movie-detail-content img{
     width: 90px;
     height: 120px;
@@ -259,8 +254,37 @@ main{
     object-fit: cover;
     object-position: center;
     position: absolute;
-    left: 10px;
+    left: 20px;
     transform: translateY(-50%);
+}
+.header-movie-detail-content{
+    padding-top: 10px;
+    width: calc(100% - 110px);
+    margin: 0 0 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.header-movie-detail-content h3{
+    max-width: 70%;
+    font-size: 1.6rem;
+    color: #fff;
+}
+.header-movie-detail-content span{
+    font-size: 1.6rem;
+    color: #fff;
+    position: relative;
+}
+.header-movie-detail-content span:before{
+    content: '⭐️';
+    position: absolute;
+    left: -22px;
+    top: -5px;
+}
+.movie-detail-content .movie-detail-description{
+
+    width: 300px;
+    margin: 20px auto ;
 }
 footer{
     width: 100%;
