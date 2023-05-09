@@ -24,6 +24,7 @@ const movieDetailScore = document.querySelector('.score');
 const movieDetailDescription = document.querySelector('.movie-detail-description');
 const movieDetailImgBackground = document.querySelector('.movie-detail-background-img');
 const movieDetailCategoryContainer = document.querySelector('.movie-detail-category-container')
+const similarMoviesContainer = document.querySelector('.similar-movies')
 //buttons 
 const btnBack = document.querySelector('#back');
 const btnSearch = document.querySelector('#search');
