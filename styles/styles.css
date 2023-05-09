@@ -108,6 +108,9 @@ main{
     transform: scaleX(-1);
     color: var(--light-gray);
 }
+.preview-trends-container{
+    width: 100%;
+}
 .trends-Title-Container{
     width: 300px;
     display: flex;
