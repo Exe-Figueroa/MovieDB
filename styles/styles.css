@@ -46,7 +46,8 @@ header h1{
 }
 header .search-container{
     width: 300px;
-    position: relative;
+    position: fixed;
+    background: var(--background-gray);
 }
 header .search-container i{
     font-size: 25px;
@@ -241,7 +242,7 @@ main{
 }
 .movie-detail-container .movie-detail-content{
     width: 100%;
-    height: 50vh;
+    height: auto;
     background: var(--background-gray);
     margin-top: 250px;
     border-radius: 16px;
@@ -282,9 +283,50 @@ main{
     top: -5px;
 }
 .movie-detail-content .movie-detail-description{
-
+    color: #fff;
+    font-size: 1.3rem;
     width: 300px;
     margin: 20px auto ;
+}
+.movie-detail-category-container{
+    width: 300px;
+    margin: 0 auto 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 30px;
+    color: var(--light-gray);
+}
+.movie-detail-category-container .movie-detail-category{
+    padding: 5px;
+    border: 1px solid var(--text-stroke);
+    border-radius: 7px;
+}
+.movie-detail-category-container .movie-detail-category h3{
+    font-size: 1.3rem;
+    color: #fff;
+}
+.similar-movies-container h2{
+    margin: 10px 0 10px 30px;
+    font-size: 1.6rem;
+    color: #fff;
+}
+.similar-movies-container .similar-movies{
+    min-width: 300px;
+    max-width: 350px;
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding-left: 30px;
+    padding-right: 5px;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    margin-top: 10px;
+}
+.similar-movies-container .similar-movies img{
+    width: 100px;
+    height: 120px;
+    border-radius: 16px;
+    
 }
 footer{
     width: 100%;
