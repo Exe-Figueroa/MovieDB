@@ -53,6 +53,7 @@ function trendsPage(){
     document.documentElement.scrollTop = 0;
     h2Title.innerHTML = 'Trends';
     getTrendingMoviesPreview();
+    getTrendingMovies()
 }
 function searchPage(){
     console.log("search");
@@ -79,11 +80,10 @@ function movieDetailsPage(){
     categoriesList.classList.add("inactive");
     movieCategory.classList.add("inactive");
     movieDetails.classList.remove("inactive");
+    h2Title.innerHTML='Movie Details';
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-
     const [_, id] = location.hash.split('=')
-    
     getMovieById(id);
 }
 function categoriesPage(){

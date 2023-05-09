@@ -127,3 +127,8 @@ async function getSimilarMoviesById(id){
     const similarMovies = data.results;
     createMovies(similarMovies, similarMoviesContainer, null)
 }
+async function getTrendingMovies (){
+    const {data} = await api(`trending/movie/day`);
+    const movieTop = data.results;
+    createMovies(movieTop ,moviesCategoryContainer, null)
+}
