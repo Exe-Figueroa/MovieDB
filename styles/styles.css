@@ -308,6 +308,7 @@ main{
     padding: 5px;
     border-radius: 8px;
 }
+
 .similar-movies-container h2{
     margin: 10px 0 10px 30px;
     font-size: 1.6rem;
@@ -322,7 +323,7 @@ main{
     padding-right: 5px;
     overscroll-behavior-x: contain;
     scroll-snap-type: x proximity;
-    margin-top: 10px;
+    margin: 10px auto 0 auto;
 }
 .similar-movies-container .similar-movies img{
     width: 100px;
