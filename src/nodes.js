@@ -18,7 +18,12 @@ const moviesCategoryContainer = document.querySelector('.movie-category-containe
 //Movie Details
 
 const movieDetails = document.querySelector('.movie-detail-container');
-
+const movieDetailContent = document.querySelector('.movie-detail-content');
+const movieDetailTitle = document.querySelector('.title-movie-detail');
+const movieDetailScore = document.querySelector('.score');
+const movieDetailDescription = document.querySelector('.movie-detail-description');
+const movieDetailImgBackground = document.querySelector('.movie-detail-background-img');
+const movieDetailCategoryContainer = document.querySelector('.movie-detail-category-container')
 //buttons 
 const btnBack = document.querySelector('#back');
 const btnSearch = document.querySelector('#search');

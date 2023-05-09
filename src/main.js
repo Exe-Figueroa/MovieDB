@@ -101,7 +101,11 @@ async function getMoviesByCategory(id){
     createMovies(movie ,moviesCategoryContainer, null)
 }
 async function getMovieById(id){
-    const {data: movie} = await api(`discover/${id}`);
+    const {data: movie} = await api(`movie/${id}`);
 
-    createMovies(movie ,moviesCategoryContainer, null)
+    movieDetailTitle.textContent = movie.title;
+    console.log(movie);
+    movieDetailDescription.textContent = movie.overview;
+    movieDetailScore.textContent = movie.vote_average;
+
 }
