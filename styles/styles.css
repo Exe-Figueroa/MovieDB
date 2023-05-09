@@ -138,7 +138,7 @@ main{
 }
 .movie-trends-container {
     min-width: 300px;
-    max-width: 350px;
+    max-width: 340px;
 
     overflow-x: scroll;
     white-space: nowrap;
