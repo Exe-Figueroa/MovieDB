@@ -9,6 +9,12 @@ btnSearch.addEventListener('click', ()=>{
 btnTrends.addEventListener('click', ()=>{
     location.hash = '#trends'
 })
+btnHome.addEventListener('click', ()=>{
+    location.hash = ''
+})
+btnSearchFooter.addEventListener('click', ()=>{
+    location.hash = '#search='
+})
 
 function navigator() {
     if (location.hash.startsWith('#trends')) {

@@ -25,7 +25,11 @@ const movieDetailDescription = document.querySelector('.movie-detail-description
 const movieDetailImgBackground = document.querySelector('.movie-detail-background-img');
 const movieDetailCategoryContainer = document.querySelector('.movie-detail-category-container')
 const similarMoviesContainer = document.querySelector('.similar-movies')
+const movieDetailImg = document.querySelector('.movie-detail-img');
 //buttons 
 const btnBack = document.querySelector('#back');
 const btnSearch = document.querySelector('#search');
 const btnTrends = document.querySelector('#btnTrends');
+const btnHome = document.querySelector('.footer-btn-home');
+const btnSearchFooter = document.querySelector('.footer-btn-search');
+const btnFav = document.querySelector('.footer-btn-favorites');
