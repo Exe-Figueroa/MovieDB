@@ -44,7 +44,7 @@ header h1{
     color: #fff;
 }
 .search-container{
-    min-width: 300px;
+    width: 100%;
     position: fixed;
     background: var(--background-gray);
 }
@@ -52,7 +52,7 @@ header .search-container i{
     font-size: 25px;
     color: var(--light-gray);
     position: absolute;
-    left: 0;
+    left: 20px;
 }
 header .search-container h2{
     color: #fff;
