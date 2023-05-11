@@ -148,7 +148,8 @@ main{
     padding-left: 30px;
     padding-right: 5px;
     overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
+    overflow-y: hidden;
+    /* scroll-snap-type: x proximity; */
 }
 .movie-trends-loading{
     display: inline-block;
@@ -193,6 +194,7 @@ main{
 }
 .movie-img{
     width: 100%;
+    min-height: 145px;
     height: 100%;
     object-fit: cover;
     object-position: center;

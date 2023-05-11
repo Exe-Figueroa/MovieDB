@@ -18,7 +18,7 @@ const lazyLoading = new IntersectionObserver((entries)=>{
     })
 });
 
-const createMovies = (movies, container, topicCounter)=>{
+const createMovies = (movies, container, topicCounter, lazyLoad=false)=>{
     //A modificar
     container.innerHTML = '';
 
@@ -35,15 +35,20 @@ const createMovies = (movies, container, topicCounter)=>{
             movieImg.id = `${peli.id}`;
             movieImg.setAttribute('alt', peli.title);
             movieImg.setAttribute(
-                'data-img',
+                lazyLoad ? 'data-img' : 'src',
                 'https://image.tmdb.org/t/p/w300' + peli.poster_path,
             );
+            movieImg.addEventListener('error', ()=>{
+                movieImg.setAttribute('src', "https://i.pinimg.com/564x/18/00/7f/18007fbaa3e68088600bbbc0507e79d0.jpg")
+            })
             const numberImg = document.createElement('span');
             numberImg.classList.add('movie-number')
             numberImg.innerText = topicCounter;
             movieContainer.append(movieImg, numberImg);
             container.appendChild(movieContainer);
-            lazyLoading.observe(movieImg);
+            if (lazyLoad){
+                lazyLoading.observe(movieImg);
+            }
         })
     }else{
         movies.splice(0,10).forEach(movie => {
@@ -56,12 +61,17 @@ const createMovies = (movies, container, topicCounter)=>{
             movieImg.classList.add('movie-img');
             movieImg.setAttribute('alt', movie.title);
             movieImg.setAttribute(
-            'data-img',
+            lazyLoad ? 'data-img' : 'src',
             'https://image.tmdb.org/t/p/w300' + movie.poster_path,
             );
+            movieImg.addEventListener('error', ()=>{
+                movieImg.setAttribute('src', "https://i.pinimg.com/564x/18/00/7f/18007fbaa3e68088600bbbc0507e79d0.jpg")
+            })
             movieContainer.appendChild(movieImg);
             container.appendChild(movieContainer);
-            lazyLoading.observe(movieImg);
+            if (lazyLoad){
+                lazyLoading.observe(movieImg);
+            }
         });
     }
 }
@@ -89,7 +99,7 @@ async function getTrendingMoviesPreview(){
     const {data} = await api(`trending/movie/day`);
     const movieTop = data.results;
     let topicCounter = 0;
-    createMovies(movieTop ,movieTrendContainer, topicCounter)
+    createMovies(movieTop ,movieTrendContainer, topicCounter, true)
 }
 //Se crea la función que llama a los nombres de las categorías
 async function getCategoriesPreviewList(){
@@ -115,7 +125,7 @@ async function getMoviesByCategory(id){
         }
     });
     const movie = data.results;
-    createMovies(movie ,moviesCategoryContainer, null)
+    createMovies(movie ,moviesCategoryContainer, null, true)
 }
 async function getMovieById(id){
     const {data: movie} = await api(`movie/${id}`);
@@ -140,5 +150,5 @@ async function getSimilarMoviesById(id){
 async function getTrendingMovies (){
     const {data} = await api(`trending/movie/day`);
     const movieTop = data.results;
-    createMovies(movieTop ,moviesCategoryContainer, null)
+    createMovies(movieTop ,moviesCategoryContainer, null, true)
 }
