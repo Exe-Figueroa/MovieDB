@@ -139,6 +139,7 @@ main{
     margin-left: 5px;
 }
 .movie-trends-container {
+    max-height: 230px;
     min-width: 300px;
     max-width: 400px;
     margin: 0 auto;

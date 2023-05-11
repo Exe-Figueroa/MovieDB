@@ -9,18 +9,21 @@ const api = axios.create({
     }
 });
 //Se crea la función que llama a las películas de manera automática
-// const lazyLoading = new IntersectionObserver((entries)=>{
-//     entries.forEach((elemento)=>{
-
-//     })
-// });
+const lazyLoading = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+        if (entry.isIntersecting){
+            const url =  entry.target.getAttribute('data-img');
+            entry.target.setAttribute('src', url);
+        }
+    })
+});
 
 const createMovies = (movies, container, topicCounter)=>{
     //A modificar
     container.innerHTML = '';
 
     if (topicCounter != null){
-        movies.forEach((peli)=>{
+        movies.splice(0,10).forEach((peli)=>{
             topicCounter++;
             const movieContainer = document.createElement('section');
             movieContainer.classList.add('movie');
@@ -32,7 +35,7 @@ const createMovies = (movies, container, topicCounter)=>{
             movieImg.id = `${peli.id}`;
             movieImg.setAttribute('alt', peli.title);
             movieImg.setAttribute(
-                'src',
+                'data-img',
                 'https://image.tmdb.org/t/p/w300' + peli.poster_path,
             );
             const numberImg = document.createElement('span');
@@ -40,9 +43,10 @@ const createMovies = (movies, container, topicCounter)=>{
             numberImg.innerText = topicCounter;
             movieContainer.append(movieImg, numberImg);
             container.appendChild(movieContainer);
+            lazyLoading.observe(movieImg);
         })
     }else{
-        movies.forEach(movie => {
+        movies.splice(0,10).forEach(movie => {
             const movieContainer = document.createElement('div');
             movieContainer.classList.add('movie-container');
             movieContainer.addEventListener('click', () => {
@@ -52,11 +56,12 @@ const createMovies = (movies, container, topicCounter)=>{
             movieImg.classList.add('movie-img');
             movieImg.setAttribute('alt', movie.title);
             movieImg.setAttribute(
-            'src',
+            'data-img',
             'https://image.tmdb.org/t/p/w300' + movie.poster_path,
             );
             movieContainer.appendChild(movieImg);
             container.appendChild(movieContainer);
+            lazyLoading.observe(movieImg);
         });
     }
 }
