@@ -18,10 +18,16 @@ const lazyLoading = new IntersectionObserver((entries)=>{
     })
 });
 
-const createMovies = (movies, container, topicCounter, lazyLoad=false)=>{
-    //A modificar
-    container.innerHTML = '';
 
+const createMovies = (movies, container, topicCounter, 
+    {
+        lazyLoad = false, 
+        clean = true
+    }={} )=>{
+    
+    if (clean){
+        container.innerHTML = '';
+    }
     if (topicCounter != null){
         movies.splice(0,10).forEach((peli)=>{
             topicCounter++;
@@ -74,6 +80,7 @@ const createMovies = (movies, container, topicCounter, lazyLoad=false)=>{
             }
         });
     }
+    
 }
 //Se crea una función para poder llamar a categorías de manera automática y así no repetir código
 const createCategories = (category, container)=>{
@@ -99,7 +106,7 @@ async function getTrendingMoviesPreview(){
     const {data} = await api(`trending/movie/day`);
     const movieTop = data.results;
     let topicCounter = 0;
-    createMovies(movieTop ,movieTrendContainer, topicCounter, true)
+    createMovies(movieTop ,movieTrendContainer, topicCounter, {lazyLoad: true, page: true});
 }
 //Se crea la función que llama a los nombres de las categorías
 async function getCategoriesPreviewList(){
@@ -109,13 +116,18 @@ async function getCategoriesPreviewList(){
 }
 //Se traen las pelis por el query del search
 async function getMoviesBySearch(query){
+    page = 1;
     const {data} = await api(`search/movie`, {
         params: {
             query, 
         }
     });
     const movie = data.results;
-    createMovies(movie, moviesCategoryContainer, null) //Arreglar esto
+    createMovies(movie, moviesCategoryContainer, null, 
+        {
+        lazyLoad: true, 
+        clean: page == 1
+    })
 }
 //Se traen Pelis por id. Eso funciona con las categorias del getCategoryPreviewList
 async function getMoviesByCategory(id){
@@ -125,7 +137,12 @@ async function getMoviesByCategory(id){
         }
     });
     const movie = data.results;
-    createMovies(movie ,moviesCategoryContainer, null, true)
+    createMovies(movie ,moviesCategoryContainer, null, true, {lazyLoad: true, clean: page==1});
+    // const btnSeeMore = document.createElement('button');
+    // btnSeeMore.innerText='See More';
+    // btnSeeMore.setAttribute('id', 'btnSeeMore')
+    // moviesCategoryContainer.appendChild(btnSeeMore);
+    // btnSeeMore.addEventListener('click', getPaginationTrendingMovies)
 }
 async function getMovieById(id){
     const {data: movie} = await api(`movie/${id}`);
@@ -145,10 +162,38 @@ async function getMovieById(id){
 async function getSimilarMoviesById(id){
     const {data} = await api(`movie/${id}/recommendations`);
     const similarMovies = data.results;
-    createMovies(similarMovies, similarMoviesContainer, null)
+    createMovies(similarMovies, similarMoviesContainer, null, {lazyLoad: true, clean: page == 1});
 }
 async function getTrendingMovies (){
     const {data} = await api(`trending/movie/day`);
     const movieTop = data.results;
     createMovies(movieTop ,moviesCategoryContainer, null, true)
+    // const btnSeeMore = document.createElement('button');
+    // btnSeeMore.innerText='See More';
+    // btnSeeMore.setAttribute('id', 'btnSeeMore');
+    // moviesCategoryContainer.appendChild(btnSeeMore);
+    // btnSeeMore.addEventListener('click', getPaginationTrendingMovies)
+}
+
+async function getPaginationTrendingMovies(){
+    const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15);
+    if(scrollIsBottom){
+        page++;
+        const {data} = await api(`trending/movie/day`,{
+            params: {
+                page,
+            }
+        });
+        const movies = data.results;
+        createMovies(movies, moviesCategoryContainer, null, {lazyLoad: true, clean: page==1});
+    }
+    // if(document.getElementById('btnSeeMore')){
+    //     document.getElementById('btnSeeMore').remove()
+    //     const btnSeeMore = document.createElement('button');
+    //     btnSeeMore.innerText='See More';
+    //     btnSeeMore.setAttribute('id', 'btnSeeMore');
+    //     moviesCategoryContainer.appendChild(btnSeeMore);
+    //     btnSeeMore.addEventListener('click', getPaginationTrendingMovies)
+    // }
 }

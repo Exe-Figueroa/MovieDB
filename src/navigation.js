@@ -1,5 +1,8 @@
+let page = 1;
+let infinityScroll;
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
+window.addEventListener('scroll', infinityScroll, false);
 btnBack.addEventListener('click', () => {
     location.hash = window.history.back();
 });
@@ -17,6 +20,11 @@ btnSearchFooter.addEventListener('click', ()=>{
 })
 
 function navigator() {
+    if (infinityScroll) {
+        window.removeEventListener('scroll', infinityScroll, {passive:false});
+        infinityScroll = undefined;
+    }
+
     if (location.hash.startsWith('#trends')) {
         trendsPage();
     } else if (location.hash.startsWith('#search=')) {
@@ -27,6 +35,10 @@ function navigator() {
         categoriesPage();
     } else {
         homePage();
+    }
+    if (infinityScroll) {
+        window.addEventListener('scroll', infinityScroll, {passive : false});
+        infinityScroll = undefined;
     }
 }
 
@@ -60,6 +72,7 @@ function trendsPage(){
     h2Title.innerHTML = 'Trends';
     getTrendingMoviesPreview();
     getTrendingMovies()
+    infinityScroll = getPaginationTrendingMovies;
 }
 function searchPage(){
     console.log("search");
@@ -105,5 +118,6 @@ function categoriesPage(){
     const[id, noMeInteresa]=categoryData.split('-')
     getCategoriesPreviewList();
     getTrendingMoviesPreview();
-    getMoviesByCategory(id); 
+    getMoviesByCategory(id);
+    infinityScroll = getPaginationTrendingMovies;
 }
