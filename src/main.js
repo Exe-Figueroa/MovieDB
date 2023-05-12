@@ -117,6 +117,7 @@ async function getCategoriesPreviewList(){
 //Se traen las pelis por el query del search
 async function getMoviesBySearch(query){
     page = 1;
+    // maxPage = data.total_pages;
     const {data} = await api(`search/movie`, {
         params: {
             query, 
@@ -137,6 +138,7 @@ async function getMoviesByCategory(id){
         }
     });
     const movie = data.results;
+    maxPage = data.total_pages;
     createMovies(movie ,moviesCategoryContainer, null, true, {lazyLoad: true, clean: page==1});
     // const btnSeeMore = document.createElement('button');
     // btnSeeMore.innerText='See More';
@@ -167,6 +169,7 @@ async function getSimilarMoviesById(id){
 async function getTrendingMovies (){
     const {data} = await api(`trending/movie/day`);
     const movieTop = data.results;
+    maxPage = data.total_pages;
     createMovies(movieTop ,moviesCategoryContainer, null, true)
     // const btnSeeMore = document.createElement('button');
     // btnSeeMore.innerText='See More';
@@ -178,7 +181,8 @@ async function getTrendingMovies (){
 async function getPaginationTrendingMovies(){
     const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
     const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15);
-    if(scrollIsBottom){
+    const pageIsNotMax = page < maxPage;
+    if(scrollIsBottom && pageIsNotMax){
         page++;
         const {data} = await api(`trending/movie/day`,{
             params: {

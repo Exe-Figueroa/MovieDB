@@ -1,4 +1,5 @@
 let page = 1;
+let maxPage;
 let infinityScroll;
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
