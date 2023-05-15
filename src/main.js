@@ -166,11 +166,6 @@ async function getMoviesByCategory(id){
     const movie = data.results;
     maxPage = data.total_pages;
     createMovies(movie ,moviesCategoryContainer, null, true, {lazyLoad: true, clean: false});
-    // const btnSeeMore = document.createElement('button');
-    // btnSeeMore.innerText='See More';
-    // btnSeeMore.setAttribute('id', 'btnSeeMore')
-    // moviesCategoryContainer.appendChild(btnSeeMore);
-    // btnSeeMore.addEventListener('click', getPaginationTrendingMovies)
 }
 function getPaginationMoviesByCategory(id){
     return async function (){
@@ -223,11 +218,6 @@ async function getTrendingMovies (){
     const movieTop = data.results;
     maxPage = data.total_pages;
     createMovies(movieTop ,moviesCategoryContainer, null, true)
-    // const btnSeeMore = document.createElement('button');
-    // btnSeeMore.innerText='See More';
-    // btnSeeMore.setAttribute('id', 'btnSeeMore');
-    // moviesCategoryContainer.appendChild(btnSeeMore);
-    // btnSeeMore.addEventListener('click', getPaginationTrendingMovies)
 }
 
 async function getPaginationTrendingMovies(){
@@ -244,12 +234,4 @@ async function getPaginationTrendingMovies(){
         const movies = data.results;
         createMovies(movies, moviesCategoryContainer, null, {lazyLoad: true, clean: page==1});
     }
-    // if(document.getElementById('btnSeeMore')){
-    //     document.getElementById('btnSeeMore').remove()
-    //     const btnSeeMore = document.createElement('button');
-    //     btnSeeMore.innerText='See More';
-    //     btnSeeMore.setAttribute('id', 'btnSeeMore');
-    //     moviesCategoryContainer.appendChild(btnSeeMore);
-    //     btnSeeMore.addEventListener('click', getPaginationTrendingMovies)
-    // }
 }
