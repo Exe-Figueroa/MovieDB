@@ -9,12 +9,13 @@ btnBack.addEventListener('click', () => {
 });
 btnSearch.addEventListener('click', ()=>{
     location.hash = `#search=${inputSearch.value}`
+    page=1;
 });
 btnTrends.addEventListener('click', ()=>{
     location.hash = '#trends'
 })
 btnHome.addEventListener('click', ()=>{
-    location.hash = ''
+    location.hash = null
 })
 btnSearchFooter.addEventListener('click', ()=>{
     location.hash = '#search='
@@ -89,6 +90,7 @@ function searchPage(){
     getMoviesBySearch(query); 
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
+    infinityScroll = getPaginationMoviesBySearch(query);
 }
 function movieDetailsPage(){
     // header.classList.add("inactive");
@@ -120,5 +122,5 @@ function categoriesPage(){
     getCategoriesPreviewList();
     getTrendingMoviesPreview();
     getMoviesByCategory(id);
-    infinityScroll = getPaginationTrendingMovies;
+    infinityScroll = getPaginationMoviesByCategory(id);
 }

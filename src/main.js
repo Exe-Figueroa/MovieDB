@@ -116,19 +116,45 @@ async function getCategoriesPreviewList(){
 }
 //Se traen las pelis por el query del search
 async function getMoviesBySearch(query){
-    page = 1;
-    // maxPage = data.total_pages;
     const {data} = await api(`search/movie`, {
         params: {
             query, 
         }
     });
     const movie = data.results;
+    maxPage=data.total_pages;
+    console.log({page, maxPage});
     createMovies(movie, moviesCategoryContainer, null, 
         {
         lazyLoad: true, 
         clean: page == 1
     })
+}
+function getPaginationMoviesBySearch(query){
+    return async function (){
+        const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+    const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15);
+    const pageIsNotMax = page < maxPage;
+    if(scrollIsBottom && pageIsNotMax){
+        page++
+        const {data} = await api(`search/movie`, {
+            params: {
+                query,
+                page, 
+            }
+        });
+        const movie = data.results;
+        
+        createMovies(
+            movie, 
+            moviesCategoryContainer, 
+            null, 
+            {
+                lazyLoad: true, 
+                clean: false
+            });
+    }
+    }
 }
 //Se traen Pelis por id. Eso funciona con las categorias del getCategoryPreviewList
 async function getMoviesByCategory(id){
@@ -139,12 +165,38 @@ async function getMoviesByCategory(id){
     });
     const movie = data.results;
     maxPage = data.total_pages;
-    createMovies(movie ,moviesCategoryContainer, null, true, {lazyLoad: true, clean: page==1});
+    createMovies(movie ,moviesCategoryContainer, null, true, {lazyLoad: true, clean: false});
     // const btnSeeMore = document.createElement('button');
     // btnSeeMore.innerText='See More';
     // btnSeeMore.setAttribute('id', 'btnSeeMore')
     // moviesCategoryContainer.appendChild(btnSeeMore);
     // btnSeeMore.addEventListener('click', getPaginationTrendingMovies)
+}
+function getPaginationMoviesByCategory(id){
+    return async function (){
+        const {scrollTop, scrollHeight, clientHeight} = document.documentElement;
+        const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15);
+        const pageIsNotMax = page < maxPage;
+        if(scrollIsBottom && pageIsNotMax){
+            page++;
+            const {data} = await api(`discover/movie`, {
+                params: {
+                    with_genres: id,
+                    page,
+                }
+            });
+            const movie = data.results;
+            
+            createMovies(
+                movie, 
+                moviesCategoryContainer, 
+                null, 
+                {
+                    lazyLoad: true, 
+                    clean: false
+                });
+        }
+        }
 }
 async function getMovieById(id){
     const {data: movie} = await api(`movie/${id}`);
