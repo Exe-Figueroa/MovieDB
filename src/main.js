@@ -33,13 +33,13 @@ const createMovies = (movies, container, topicCounter,
             topicCounter++;
             const movieContainer = document.createElement('section');
             movieContainer.classList.add('movie');
-            movieContainer.addEventListener('click',()=>{
-                location.hash = '#movie=' + peli.id;
-            });
             const movieImg = document.createElement('img');
             movieImg.classList.add('movie-img');
             movieImg.id = `${peli.id}`;
             movieImg.setAttribute('alt', peli.title);
+            movieImg.addEventListener('click',()=>{
+                location.hash = '#movie=' + peli.id;
+            });
             movieImg.setAttribute(
                 lazyLoad ? 'data-img' : 'src',
                 'https://image.tmdb.org/t/p/w300' + peli.poster_path,
@@ -48,9 +48,15 @@ const createMovies = (movies, container, topicCounter,
                 movieImg.setAttribute('src', "https://i.pinimg.com/564x/18/00/7f/18007fbaa3e68088600bbbc0507e79d0.jpg")
             })
             const numberImg = document.createElement('span');
+            const movieBtn = document.createElement('button');
+            movieBtn.classList.add('movie-btn');
+            movieBtn.innerHTML = '<i class="fa-solid fa-check"></i>'
+            movieBtn.addEventListener('click', () =>{
+                movieBtn.classList.toggle('movie-btn--liked');
+            })
             numberImg.classList.add('movie-number')
             numberImg.innerText = topicCounter;
-            movieContainer.append(movieImg, numberImg);
+            movieContainer.append(movieImg, numberImg, movieBtn);
             container.appendChild(movieContainer);
             if (lazyLoad){
                 lazyLoading.observe(movieImg);
@@ -60,12 +66,12 @@ const createMovies = (movies, container, topicCounter,
         movies.splice(0,10).forEach(movie => {
             const movieContainer = document.createElement('div');
             movieContainer.classList.add('movie-container');
-            movieContainer.addEventListener('click', () => {
-            location.hash = '#movie=' + movie.id;
-            });
             const movieImg = document.createElement('img');
             movieImg.classList.add('movie-img');
             movieImg.setAttribute('alt', movie.title);
+            movieImg.addEventListener('click', () => {
+            location.hash = '#movie=' + movie.id;
+            });
             movieImg.setAttribute(
             lazyLoad ? 'data-img' : 'src',
             'https://image.tmdb.org/t/p/w300' + movie.poster_path,
@@ -73,7 +79,13 @@ const createMovies = (movies, container, topicCounter,
             movieImg.addEventListener('error', ()=>{
                 movieImg.setAttribute('src', "https://i.pinimg.com/564x/18/00/7f/18007fbaa3e68088600bbbc0507e79d0.jpg")
             })
-            movieContainer.appendChild(movieImg);
+            const movieBtn = document.createElement('button');
+            movieBtn.classList.add('movie-btn');
+            movieBtn.innerHTML = '<i class="fa-solid fa-check"></i>'
+            movieBtn.addEventListener('click', () =>{
+                movieBtn.classList.toggle('movie-btn--liked');
+            })
+            movieContainer.append(movieImg, movieBtn);
             container.appendChild(movieContainer);
             if (lazyLoad){
                 lazyLoading.observe(movieImg);

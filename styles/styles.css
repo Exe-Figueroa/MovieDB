@@ -218,6 +218,35 @@ main{
     font-weight: bold;
     cursor: pointer;
 }
+
+/* MOVIE-BTN */
+button.movie-btn{
+    transition: .1s linear;
+    width: 30px;
+    height: 30px;
+    border: none;
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--secondary-gray);
+    top: 5px;
+    right: 5px;
+    box-shadow: 0 0 10px var(--text-stroke);
+} 
+button.movie-btn i{
+    font-size: 15px;
+    color: var(--light-gray);
+}
+button.movie-btn.movie-btn--liked{
+    transition: .1s linear;
+    /* top: 50%;
+    left: 50%; */
+    transform: translate(calc(-50% - 15px), 150% );
+    width: 50px;
+    height: 50px;
+}
+button.movie-btn.movie-btn--liked i{
+    font-size: 30px;
+}
 .categories-container .category-loading { 
     width: 55px;
     height: 15px;
@@ -243,6 +272,9 @@ main{
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-bottom: 5px;
+}
+.movie-category-container .movie-container{
+    position: relative;
 }
 .movie-category-container .img-movie-category{
     width: 134px;
@@ -374,11 +406,11 @@ main{
     scroll-snap-type: x proximity;
     margin: 10px auto 0 auto;
     overflow-y: hidden;
-    max-height: 150px;
+    max-height: 215px;
 }
 .similar-movies-container .similar-movies .movie-container{
-    width: 100px;
-    height: 145px;
+    width: 144px;
+    height: 210px;
     border-radius: 16px;
     object-fit: cover;
     object-position: center;
@@ -386,6 +418,7 @@ main{
     display: inline-block;
     scroll-snap-align: center;
     margin-bottom: 5px;
+    position: relative;
 }
 .similar-movies-container .similar-movies-loading{
     width: 100px;
