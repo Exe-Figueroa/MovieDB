@@ -57,6 +57,7 @@ function homePage(){
     // header.classList.remove("inactive");
     getCategoriesPreviewList();
     getTrendingMoviesPreview();
+    getLikedMovies();
 }
 function trendsPage(){
     console.log("trends");

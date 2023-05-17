@@ -8,6 +8,25 @@ const api = axios.create({
         'api_key': API_KEY,
     }
 });
+const likedMovieList = ()=>{
+    const item = JSON.parse(localStorage.getItem('liked_movies'))
+    let movie;
+    if (item) {
+        movie = item;
+    } else {
+        movie = {};
+    }
+    return movie;
+}
+const likeMovie = (movie)=>{
+    const likedMovies = likedMovieList();
+    if (likedMovies[movie.id]){
+        likedMovies[movie.id] = undefined
+    }else{
+        likedMovies[movie.id] = movie
+    }
+    localStorage.setItem('liked_movies',JSON.stringify(likedMovies));
+}
 //Se crea la función que llama a las películas de manera automática
 const lazyLoading = new IntersectionObserver((entries)=>{
     entries.forEach((entry)=>{
@@ -50,9 +69,11 @@ const createMovies = (movies, container, topicCounter,
             const numberImg = document.createElement('span');
             const movieBtn = document.createElement('button');
             movieBtn.classList.add('movie-btn');
-            movieBtn.innerHTML = '<i class="fa-solid fa-check"></i>'
+            movieBtn.innerHTML = '<i class="fa-solid fa-check"></i>';
+            likedMovieList()[peli.id]&& movieBtn.classList.add('movie-btn--liked')
             movieBtn.addEventListener('click', () =>{
                 movieBtn.classList.toggle('movie-btn--liked');
+                likeMovie(peli);
             })
             numberImg.classList.add('movie-number')
             numberImg.innerText = topicCounter;
@@ -82,8 +103,10 @@ const createMovies = (movies, container, topicCounter,
             const movieBtn = document.createElement('button');
             movieBtn.classList.add('movie-btn');
             movieBtn.innerHTML = '<i class="fa-solid fa-check"></i>'
+            likedMovieList()[movie.id]&& movieBtn.classList.add('movie-btn--liked')
             movieBtn.addEventListener('click', () =>{
                 movieBtn.classList.toggle('movie-btn--liked');
+                likeMovie(movie);
             })
             movieContainer.append(movieImg, movieBtn);
             container.appendChild(movieContainer);
@@ -177,7 +200,7 @@ async function getMoviesByCategory(id){
     });
     const movie = data.results;
     maxPage = data.total_pages;
-    createMovies(movie ,moviesCategoryContainer, null, true, {lazyLoad: true, clean: false});
+    createMovies(movie ,moviesCategoryContainer, null, {lazyLoad: true, clean: false});
 }
 function getPaginationMoviesByCategory(id){
     return async function (){
@@ -246,4 +269,9 @@ async function getPaginationTrendingMovies(){
         const movies = data.results;
         createMovies(movies, moviesCategoryContainer, null, {lazyLoad: true, clean: page==1});
     }
+}
+function getLikedMovies() {
+    const likedMovies = likedMovieList();
+    const moviesArray = Object.values(likedMovies);
+    createMovies(moviesArray, moviesCategoryContainer, null, {lazyLoad: true, clean: true})
 }
