@@ -123,4 +123,5 @@ function categoriesPage(){
     getTrendingMoviesPreview();
     getMoviesByCategory(id);
     infinityScroll = getPaginationMoviesByCategory(id);
+    getLikedMovies();
 }
