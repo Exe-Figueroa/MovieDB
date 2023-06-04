@@ -74,6 +74,7 @@ const createMovies = (movies, container, topicCounter,
             movieBtn.addEventListener('click', () =>{
                 movieBtn.classList.toggle('movie-btn--liked');
                 likeMovie(peli);
+                getLikedMovies();
             })
             numberImg.classList.add('movie-number')
             numberImg.innerText = topicCounter;
@@ -107,6 +108,7 @@ const createMovies = (movies, container, topicCounter,
             movieBtn.addEventListener('click', () =>{
                 movieBtn.classList.toggle('movie-btn--liked');
                 likeMovie(movie);
+                getLikedMovies();
             })
             movieContainer.append(movieImg, movieBtn);
             container.appendChild(movieContainer);
@@ -193,6 +195,7 @@ function getPaginationMoviesBySearch(query){
 }
 //Se traen Pelis por id. Eso funciona con las categorias del getCategoryPreviewList
 async function getMoviesByCategory(id){
+    page=1;
     const {data} = await api(`discover/movie`, {
         params: {
             with_genres: id,
@@ -200,7 +203,7 @@ async function getMoviesByCategory(id){
     });
     const movie = data.results;
     maxPage = data.total_pages;
-    createMovies(movie ,moviesCategoryContainer, null, {lazyLoad: true, clean: false});
+    createMovies(movie ,moviesCategoryContainer, null, {lazyLoad: true, clean: true});
 }
 function getPaginationMoviesByCategory(id){
     return async function (){
@@ -246,7 +249,7 @@ async function getMovieById(id){
 async function getSimilarMoviesById(id){
     const {data} = await api(`movie/${id}/recommendations`);
     const similarMovies = data.results;
-    createMovies(similarMovies, similarMoviesContainer, null, {lazyLoad: true, clean: page == 1});
+    createMovies(similarMovies, similarMoviesContainer, null, {lazyLoad: true, clean: true});
 }
 async function getTrendingMovies (){
     const {data} = await api(`trending/movie/day`);
@@ -273,5 +276,5 @@ async function getPaginationTrendingMovies(){
 function getLikedMovies() {
     const likedMovies = likedMovieList();
     const moviesArray = Object.values(likedMovies);
-    createMovies(moviesArray, moviesCategoryContainer, null, {lazyLoad: true, clean: true})
+    createMovies(moviesArray, favoritesMovies, null, {lazyLoad: true, clean: true})
 }
