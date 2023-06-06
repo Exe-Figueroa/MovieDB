@@ -136,7 +136,6 @@ const createCategories = (category, container)=>{
         const clickedCategory = event.target;
         if (clickedCategory.classList.contains('category')) {
             location.hash = `#category=${clickedCategory.id}-${clickedCategory.innerText}`
-            console.log(location.hash);
         }
     });
 }

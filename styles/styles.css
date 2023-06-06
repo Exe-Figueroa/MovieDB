@@ -16,6 +16,7 @@ html{
     font-size: 62.5%;
 }
 body{
+    padding-top: 55px;
     padding-bottom: 50px;
     background: var(--background-gray);
 }
@@ -23,12 +24,13 @@ body{
     display: none;
 }
 header{
+    position: fixed;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 55px;
-    /* background: var(--background-gray); */
+    background: var(--background-gray);
     top: 0;
     z-index: 1;
 }
@@ -53,13 +55,14 @@ header .search-container i{
     color: var(--light-gray);
     position: absolute;
     left: 20px;
+    transform: translateY(-50%);
 }
 header .search-container h2{
     color: #fff;
     font-size: 2.5rem;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
 }
 
 main{
@@ -257,7 +260,11 @@ main{
     font-weight: bold;
     cursor: pointer;
 }
-
+.categories-container .category:active{
+    transition: 0.1s ease;
+    transform: scale(1.1);
+    color: var(--text-stroke);
+}
 /* MOVIE-BTN */
 button.movie-btn{
     transition: .1s linear;

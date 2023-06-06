@@ -14,6 +14,9 @@ btnSearch.addEventListener('click', ()=>{
 btnTrends.addEventListener('click', ()=>{
     location.hash = '#trends'
 })
+h2Title.addEventListener('click', ()=>{
+    location.hash = '#home';
+})
 
 
 function navigator() {
