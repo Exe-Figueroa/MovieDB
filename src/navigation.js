@@ -45,7 +45,6 @@ function navigator() {
 }
 
 function homePage(){
-    console.log("Home");
     titleHeader.classList.remove("inactive");
     imgHeader.classList.remove("inactive");
     searchHeader.classList.add("inactive");
@@ -60,7 +59,6 @@ function homePage(){
     getLikedMovies();
 }
 function trendsPage(){
-    console.log("trends");
     // titleHeader.classList.add("inactive");
     titleHeader.classList.add("inactive");
     form.classList.add("inactive");
@@ -78,7 +76,6 @@ function trendsPage(){
     infinityScroll = getPaginationTrendingMovies;
 }
 function searchPage(){
-    console.log("search");
     titleHeader.classList.add("inactive");
     form.classList.remove("inactive");
     imgHeader.classList.add("inactive");

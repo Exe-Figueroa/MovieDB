@@ -6,7 +6,9 @@ const api = axios.create({
     },
     params: {
         'api_key': API_KEY,
+        "language": navigator.language || "es-ES",
     }
+
 });
 const likedMovieList = ()=>{
     const item = JSON.parse(localStorage.getItem('liked_movies'))
@@ -200,7 +202,7 @@ async function getMoviesByCategory(id){
     });
     const movie = data.results;
     maxPage = data.total_pages;
-    createMovies(movie ,moviesCategoryContainer, null, {lazyLoad: true, clean: false});
+    createMovies(movie ,moviesCategoryContainer, null, {lazyLoad: true, clean: true});
 }
 function getPaginationMoviesByCategory(id){
     return async function (){
