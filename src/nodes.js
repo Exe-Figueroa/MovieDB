@@ -30,6 +30,6 @@ const movieDetailImg = document.querySelector('.movie-detail-img');
 const btnBack = document.querySelector('#back');
 const btnSearch = document.querySelector('#search');
 const btnTrends = document.querySelector('#btnTrends');
-const btnHome = document.querySelector('.footer-btn-home');
-const btnSearchFooter = document.querySelector('.footer-btn-search');
-const btnFav = document.querySelector('.footer-btn-favorites');
+//favs
+const favoriteMoviesContainer = document.querySelector('.favorite-movies-container')
+const favoritesMovies = document.querySelector('.movie-scroll-container')

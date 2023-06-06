@@ -14,12 +14,7 @@ btnSearch.addEventListener('click', ()=>{
 btnTrends.addEventListener('click', ()=>{
     location.hash = '#trends'
 })
-btnHome.addEventListener('click', ()=>{
-    location.hash = null
-})
-btnSearchFooter.addEventListener('click', ()=>{
-    location.hash = '#search='
-})
+
 
 function navigator() {
     if (infinityScroll) {
@@ -45,6 +40,7 @@ function navigator() {
 }
 
 function homePage(){
+    page=1
     titleHeader.classList.remove("inactive");
     imgHeader.classList.remove("inactive");
     searchHeader.classList.add("inactive");
@@ -53,7 +49,7 @@ function homePage(){
     categoriesList.classList.remove("inactive");    
     movieDetails.classList.add("inactive");
     movieCategory.classList.remove("inactive");
-    // header.classList.remove("inactive");
+    favoriteMoviesContainer.classList.remove('inactive')
     getCategoriesPreviewList();
     getTrendingMoviesPreview();
     getLikedMovies();
@@ -68,6 +64,7 @@ function trendsPage(){
     categoriesList.classList.add("inactive");
     movieCategory.classList.remove("inactive");
     movieDetails.classList.add("inactive");
+    favoriteMoviesContainer.classList.add('inactive')
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
     h2Title.innerHTML = 'Trends';
@@ -84,6 +81,7 @@ function searchPage(){
     categoriesList.classList.add("inactive");
     movieCategory.classList.remove("inactive");
     movieDetails.classList.add("inactive");
+    favoriteMoviesContainer.classList.add('inactive');
     const [_, query] = location.hash.split('=');
     getMoviesBySearch(query); 
     document.body.scrollTop = 0;
@@ -100,6 +98,7 @@ function movieDetailsPage(){
     categoriesList.classList.add("inactive");
     movieCategory.classList.add("inactive");
     movieDetails.classList.remove("inactive");
+    favoriteMoviesContainer.classList.add('inactive')
     h2Title.innerHTML='Movie Details';
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
@@ -115,10 +114,12 @@ function categoriesPage(){
     categoriesList.classList.remove("inactive");    
     movieDetails.classList.add("inactive");
     movieCategory.classList.remove("inactive");
+    favoriteMoviesContainer.classList.remove('inactive')
     const [_, categoryData] = location.hash.split('=');
     const[id, noMeInteresa]=categoryData.split('-')
     getCategoriesPreviewList();
     getTrendingMoviesPreview();
     getMoviesByCategory(id);
     infinityScroll = getPaginationMoviesByCategory(id);
+    getLikedMovies();
 }

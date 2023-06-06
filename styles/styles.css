@@ -100,6 +100,7 @@ main{
     border: none;
     outline: none;
     width: calc(100% - 50px);
+    color: #fff;
 }
 .fa-solid.fa-magnifying-glass{
     font-size: 20px;
@@ -198,6 +199,45 @@ main{
     object-fit: cover;
     object-position: center;
     border-radius: 16px;
+}
+.favorite-movies-container{
+    width: 100%;
+    overflow-x: hidden;
+}
+.favorite-movies-container h2{
+    margin: 0 auto 10px;
+    width: 300px;
+    color: #fff;
+}
+.movie-scroll-container{
+    max-height: 230px;
+    min-width: 300px;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: scroll;
+    white-space: nowrap;
+    padding-left: 30px;
+    padding-right: 5px;
+    overscroll-behavior-x: contain;
+    overflow-y: hidden;
+}
+.movie-scroll-container::-webkit-scrollbar {
+    height: 1px;
+    background-color: none;
+}
+
+.movie-scroll-container::-webkit-scrollbar-thumb {
+    background-color: none;
+}
+.movie-scroll-container .movie-container{
+    position: relative;
+    display: inline-block;
+    width: 144px;
+    height: 210px;
+    border-radius: 16px;
+    margin-right: 20px;
+    scroll-snap-align: center;
+    margin-bottom: 40px;
 }
 .categories-container{
     width: 300px;
