@@ -124,20 +124,17 @@ const createMovies = (movies, container, topicCounter,
 //Se crea una función para poder llamar a categorías de manera automática y así no repetir código
 const createCategories = (category, container)=>{
     const categoryClass = [];
+    container.innerHTML = ''
     category.map(item =>{
-        const categoryElement = document.createElement('span');
-        categoryElement.id = item.id;
-        categoryElement.className = 'category';
-        categoryElement.innerText = item.name;
-        categoryClass.push(categoryElement.outerHTML);
+        const span = document.createElement('button');
+        span.setAttribute('id', item.id);
+        span.setAttribute('class', 'category');
+        span.innerText = item.name;
+        span.addEventListener('click',()=>{
+            location.hash = `#category=${item.id}-${item.name}`
+        })
+        container.appendChild(span);
     })
-    container.innerHTML = categoryClass.join('');
-    container.addEventListener('click', function(event) {
-        const clickedCategory = event.target;
-        if (clickedCategory.classList.contains('category')) {
-            location.hash = `#category=${clickedCategory.id}-${clickedCategory.innerText}`
-        }
-    });
 }
 //Se traen las pelis de trending
 async function getTrendingMoviesPreview(){

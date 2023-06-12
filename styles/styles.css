@@ -259,6 +259,8 @@ main{
     margin-right: 10px;
     font-weight: bold;
     cursor: pointer;
+    background: none;
+    border: none; 
 }
 .categories-container .category:active{
     transition: 0.1s ease;
@@ -449,7 +451,6 @@ button.movie-btn.movie-btn--liked i{
     padding-left: 30px;
     padding-right: 5px;
     overscroll-behavior-x: contain;
-    scroll-snap-type: x proximity;
     margin: 10px auto 0 auto;
     overflow-y: hidden;
     max-height: 215px;
