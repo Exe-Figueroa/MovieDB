@@ -4,6 +4,15 @@ let infinityScroll;
 window.addEventListener('DOMContentLoaded', navigator, false);
 window.addEventListener('hashchange', navigator, false);
 window.addEventListener('scroll', infinityScroll, false);
+window.addEventListener('scroll', ()=>{
+    if (window.scrollY >= 150) {
+        console.log('colocar el btn');
+        btnScroll.classList.remove('inactive')
+    }else{
+        console.log('sacar el btn');
+        btnScroll.classList.add('inactive')
+    }
+})
 btnBack.addEventListener('click', () => {
     location.hash = window.history.back();
 });
@@ -16,6 +25,10 @@ btnTrends.addEventListener('click', ()=>{
 })
 h2Title.addEventListener('click', ()=>{
     location.hash = '#home';
+})
+btnScroll.addEventListener('click', ()=>{
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 })
 
 

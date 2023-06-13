@@ -39,7 +39,6 @@ const lazyLoading = new IntersectionObserver((entries)=>{
     })
 });
 
-
 const createMovies = (movies, container, topicCounter, 
     {
         lazyLoad = false, 
