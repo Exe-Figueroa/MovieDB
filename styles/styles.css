@@ -488,8 +488,14 @@ button.movie-btn.movie-btn--liked i{
 }
 .btn-scroll-container{
     position: fixed;
-    right: 15px;
+    right: 25px;
     bottom: 35px;
+    background: blue;
+    
+    .btn-scroll{
+        background: none;
+        border: none;
+    }
 }
 footer{
     width: 100%;
