@@ -429,6 +429,7 @@ button.movie-btn.movie-btn--liked i{
     border: 1px solid var(--text-stroke);
     padding: 5px;
     border-radius: 8px;
+    background: none;
 }
 .movie-detail-category-container .movie-detail-category-loading{
     width: 50px;
