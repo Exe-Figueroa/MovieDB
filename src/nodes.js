@@ -34,4 +34,4 @@ const btnTrends = document.querySelector('#btnTrends');
 const favoriteMoviesContainer = document.querySelector('.favorite-movies-container')
 const favoritesMovies = document.querySelector('.movie-scroll-container')
 //btn-scroll
-const btnScroll = document.querySelector('.btn-scroll-container');
+const btnScroll = document.querySelector('.btn-toggle');

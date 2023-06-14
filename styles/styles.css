@@ -490,12 +490,20 @@ button.movie-btn.movie-btn--liked i{
     position: fixed;
     right: 25px;
     bottom: 35px;
-    background: blue;
-    
-    .btn-scroll{
-        background: none;
-        border: none;
-    }
+    background-color: var(--secondary-gray);
+    box-shadow: 0 0 10px var(--text-stroke);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-scroll-container .btn-scroll{
+    border: none;
+    background: none;
+    margin: auto;
+    color: var(--light-gray);
 }
 footer{
     width: 100%;

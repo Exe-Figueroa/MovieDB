@@ -51,10 +51,10 @@ function navigator() {
     } else {
         homePage();
     }
-    if (infinityScroll) {
-        window.addEventListener('scroll', infinityScroll, {passive : false});
-        infinityScroll = undefined;
-    }
+    // if (infinityScroll) {
+    //     window.addEventListener('scroll', infinityScroll, {passive : false});
+    //     infinityScroll = undefined;
+    // }
 }
 
 function homePage(){
